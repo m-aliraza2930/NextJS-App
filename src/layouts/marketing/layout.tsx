@@ -25,7 +25,7 @@ export const Layout: FC<LayoutProps> = (props) => {
 
   return (
     <>
-      <TopNav onMobileNavOpen={mobileNav.handleOpen} />
+      {/* <TopNav onMobileNavOpen={mobileNav.handleOpen} /> */}
       {!lgUp && (
         <SideNav
           onClose={mobileNav.handleClose}
@@ -34,7 +34,7 @@ export const Layout: FC<LayoutProps> = (props) => {
       )}
       <LayoutRoot>
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </LayoutRoot>
     </>
   );

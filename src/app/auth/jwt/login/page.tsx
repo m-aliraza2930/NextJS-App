@@ -55,7 +55,8 @@ const Page = () => {
         await signIn(values.email, values.password);
 
         if (isMounted()) {
-          router.push(returnTo || paths.dashboard.index);
+          router.push(paths.dashboard.customers.index);
+          console.log("iam in mounted")
         }
       } catch (err) {
         console.error(err);
