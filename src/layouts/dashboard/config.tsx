@@ -49,6 +49,7 @@ export interface Section {
 
 export const useSections = () => {
   const { t } = useTranslation();
+  console.log("iam in log")
 
   return useMemo(() => {
     return [
