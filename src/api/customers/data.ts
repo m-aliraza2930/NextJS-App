@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { subDays, subHours, subMinutes, subSeconds } from 'date-fns';
 
 import type { Customer, CustomerEmail, CustomerInvoice, CustomerLog } from 'src/types/customer';
@@ -165,6 +166,19 @@ export const customers: Customer[] = [
     updatedAt: subDays(subHours(now, 1), 9).getTime(),
   },
 ];
+const config = {
+  headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzZDg4NmRhYS03NGNmLTQzMjQtOTFiNy00OGU5YjAyNWEwMjgiLCJ0eXBlIjoiaWQiLCJlbWFpbCI6ImFsaXNoYWg0MDQ0MEBnbWFpbC5jb20iLCJpYXQiOjE2OTgzMjY2OTAsImV4cCI6MTY5ODMzMDI5MH0.y21S_utVC0i3BmXhLSZXGelafG7VsAi-jf9ep5XiQbQ` }
+};
+export const  customerDetail=async(email:string,password:string)=>{
+  const resp= axios.post('https://gnx5mqqz88.execute-api.us-east-2.amazonaws.com/auth/me',{
+       email:email,
+       password:password
+     },config)
+     console.log("resp==",resp)
+     return resp
+
+}
+
 
 export const customer: Customer = {
   id: '5e86805e2bafd54f66cc95c3',

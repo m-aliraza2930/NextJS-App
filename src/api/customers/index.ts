@@ -4,6 +4,7 @@ import { applySort } from 'src/utils/apply-sort';
 import { deepCopy } from 'src/utils/deep-copy';
 
 import { customer, customers, emails, invoices, logs } from './data';
+import axios from 'axios';
 
 type GetCustomersRequest = {
   filters?: {
@@ -100,8 +101,12 @@ class CustomersApi {
     });
   }
 
-  getCustomer(request?: GetCustomerRequest): GetCustomerResponse {
-    return Promise.resolve(deepCopy(customer));
+  async getCustomer(request?: GetCustomerRequest): GetCustomerResponse {
+    const config = {
+      headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzZDg4NmRhYS03NGNmLTQzMjQtOTFiNy00OGU5YjAyNWEwMjgiLCJ0eXBlIjoiaWQiLCJlbWFpbCI6ImFsaXNoYWg0MDQ0MEBnbWFpbC5jb20iLCJpYXQiOjE2OTgzMzUwNjEsImV4cCI6MTY5ODMzODY2MX0.m8eJE2JdFCKajPBrP4EvefwHwQyudQgcRgE5q9mwQto` }
+    };
+    const resp= await axios.get('https://gnx5mqqz88.execute-api.us-east-2.amazonaws.com/auth/me',config)
+    return Promise.resolve(deepCopy(resp.data));
   }
 
   getEmails(request?: GetCustomerEmailsRequest): GetCustomerEmailsResponse {

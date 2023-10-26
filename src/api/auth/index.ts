@@ -4,6 +4,7 @@ import { decode, JWT_EXPIRES_IN, JWT_SECRET, sign } from 'src/utils/jwt';
 import { wait } from 'src/utils/wait';
 
 import { users } from './data';
+import axios from 'axios';
 
 const STORAGE_KEY = 'users';
 
@@ -61,18 +62,28 @@ type MeRequest = {
 type MeResponse = Promise<User>;
 
 class AuthApi {
-  async signIn(request: SignInRequest): SignInResponse {
+  async signIn(request: SignInRequest) {
     const { email, password } = request;
-
-    await wait(500);
-
+        await axios.post('https://gnx5mqqz88.execute-api.us-east-2.amazonaws.com/auth/sign-in',{
+        email:email,
+        password:password
+      })
+      // console.log(accessToken)
+      // return accessToken.data.To
+    // await wait(500);
+    // const resp= axios.post(`${process.env.REACT_APP_PUBLIC_URL}/auth/sign-in`,{
+    //   email: email,
+    //   password:password
+    // })
+    // console.log("resp-----", resp)
+    // return resp
     return new Promise((resolve, reject) => {
       try {
         // Merge static users (data file) with persisted users (browser storage)
         const mergedUsers = [...users, ...getPersistedUsers()];
 
         // Find the user
-        const user = mergedUsers.find((user) => user.email === email);
+        const user:any = mergedUsers.find((user) => user.email === email);
 
         if (!user || user.password !== password) {
           reject(new Error('Please check your email and password'));
@@ -81,7 +92,7 @@ class AuthApi {
 
         // Create the access token
         const accessToken = sign({ userId: user.id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
-
+        console.log("accessToken===", accessToken)
         resolve({ accessToken });
       } catch (err) {
         console.error('[Auth Api]: ', err);

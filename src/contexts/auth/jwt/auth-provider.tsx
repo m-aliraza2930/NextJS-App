@@ -140,7 +140,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
 
   const signIn = useCallback(
     async (email: string, password: string): Promise<void> => {
-      const { accessToken } = await authApi.signIn({ email, password });
+      const  {accessToken}  = await authApi.signIn({ email, password });
       const user = await authApi.me({ accessToken });
 
       sessionStorage.setItem(STORAGE_KEY, accessToken);
