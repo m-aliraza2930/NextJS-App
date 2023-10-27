@@ -103,17 +103,18 @@ class CustomersApi {
 
   async getCustomer(request?: GetCustomerRequest): GetCustomerResponse {
     const config = {
-      headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzZDg4NmRhYS03NGNmLTQzMjQtOTFiNy00OGU5YjAyNWEwMjgiLCJ0eXBlIjoiaWQiLCJlbWFpbCI6ImFsaXNoYWg0MDQ0MEBnbWFpbC5jb20iLCJpYXQiOjE2OTgzMzUwNjEsImV4cCI6MTY5ODMzODY2MX0.m8eJE2JdFCKajPBrP4EvefwHwQyudQgcRgE5q9mwQto` }
+      headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzZDg4NmRhYS03NGNmLTQzMjQtOTFiNy00OGU5YjAyNWEwMjgiLCJ0eXBlIjoiaWQiLCJlbWFpbCI6ImFsaXNoYWg0MDQ0MEBnbWFpbC5jb20iLCJpYXQiOjE2OTgzNDMzMzgsImV4cCI6MTY5ODM0NjkzOH0.ZyMUj1ew6MtX1a4-R1FzXiNYP3uqF2-ygvPWfaczpCI` }
     };
     const resp= await axios.get('https://gnx5mqqz88.execute-api.us-east-2.amazonaws.com/auth/me',config)
     return Promise.resolve(deepCopy(resp.data));
   }
 
   getEmails(request?: GetCustomerEmailsRequest): GetCustomerEmailsResponse {
+    console.log("iam in")
     return Promise.resolve(deepCopy(emails));
   }
 
-  getInvoices(request?: GetCustomerInvoicesRequest): GetCustomerInvoicesResponse {
+  getInvoices(request?: GetCustomerInvoicesRequest): GetCustomerInvoicesResponse { //
     return Promise.resolve(deepCopy(invoices));
   }
 
