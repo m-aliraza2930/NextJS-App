@@ -5,7 +5,7 @@ export const users: User[] = [
   {
     id: '5e86809283e28b96d2d38537',
     avatar: '/assets/avatars/avatar-anika-visser.png',
-    email: 'alishah40440@gmail.com',
+    email: 'Shahzaibmehar803@gmail.com',
     name: 'Anika Visser',
     password: 'password@1',
     plan: 'Premium',
