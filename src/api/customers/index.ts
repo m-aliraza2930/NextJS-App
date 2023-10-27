@@ -123,4 +123,4 @@ class CustomersApi {
   }
 }
 
-export const customersApi = new CustomersApi();
+export const customersApi = new CustomersApi(); //
