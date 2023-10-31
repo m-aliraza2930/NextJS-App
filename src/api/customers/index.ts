@@ -103,7 +103,7 @@ class CustomersApi {
 
   async getCustomer(request?: GetCustomerRequest): GetCustomerResponse {
     const config = {
-      headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzZDg4NmRhYS03NGNmLTQzMjQtOTFiNy00OGU5YjAyNWEwMjgiLCJ0eXBlIjoiaWQiLCJlbWFpbCI6ImFsaXNoYWg0MDQ0MEBnbWFpbC5jb20iLCJpYXQiOjE2OTgzNDMzMzgsImV4cCI6MTY5ODM0NjkzOH0.ZyMUj1ew6MtX1a4-R1FzXiNYP3uqF2-ygvPWfaczpCI` }
+      headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZWZiMTkxZC05MGE5LTQyZmMtYmNlYS02OTllZjJhNDQwNjUiLCJ0eXBlIjoiaWQiLCJlbWFpbCI6IlNoYWh6YWlibWVoYXI4MDNAZ21haWwuY29tIiwiaWF0IjoxNjk4NDI5MDUzLCJleHAiOjE2OTg0MzI2NTN9._A9Xs4rnv0uUc97ySXJIDRLOvR0XaTPmTDdkCUpiiWk` }
     };
     const resp= await axios.get('https://gnx5mqqz88.execute-api.us-east-2.amazonaws.com/auth/me',config)
     return Promise.resolve(deepCopy(resp.data));
