@@ -231,7 +231,7 @@ export const SideNav: FC<SideNavProps> = (props) => {
               />
             ))}
           </Stack>
-          <Box sx={{ p: 3 }}>
+          {/* <Box sx={{ p: 3 }}>
             <Typography variant="subtitle1">Need help?</Typography>
             <Typography
               color="neutral.400"
@@ -254,7 +254,7 @@ export const SideNav: FC<SideNavProps> = (props) => {
             >
               Documentation
             </Button>
-          </Box>
+          </Box> */}
         </Stack>
       </Scrollbar>
     </Drawer>
