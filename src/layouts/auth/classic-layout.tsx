@@ -78,7 +78,7 @@ export const Layout: FC<LayoutProps> = (props) => {
                   },
                 }}
               >
-                Devias Kit <span>PRO</span>
+                Tough Trackers <span>PRO</span>
               </Box>
             </Stack>
           </Stack>
