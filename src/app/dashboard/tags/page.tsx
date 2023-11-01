@@ -23,9 +23,6 @@ import { usePageView } from 'src/hooks/use-page-view';
 import { useRouter } from 'src/hooks/use-router';
 import { paths } from 'src/paths';
 import Grid from '@mui/material/Unstable_Grid2';
-import { AuthIssuer } from 'src/sections/auth/auth-issuer';
-import { Container } from '@mui/material';
-import Textarea from '@mui/joy/Textarea';
 
 interface Values {
   email: string;
@@ -84,7 +81,7 @@ const Page = () => {
 
     >
       <Card>
-        <CardHeader title="Set up a new Hub" titleTypographyProps={{ textAlign: "center" }}  spacing={0}
+        <CardHeader title="Set up a new Tag" titleTypographyProps={{ textAlign: "center" }}  spacing={0}
            direction="column"
            alignItems="center"
            justify="center" />

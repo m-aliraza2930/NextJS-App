@@ -84,7 +84,7 @@ const Page = () => {
 
     >
       <Card>
-        <CardHeader title="Set up a new Hub" titleTypographyProps={{ textAlign: "center" }}  spacing={0}
+        <CardHeader title="Fleet Creation" titleTypographyProps={{ textAlign: "center" }}  spacing={0}
            direction="column"
            alignItems="center"
            justify="center" />
@@ -106,7 +106,7 @@ const Page = () => {
                 fullWidth
                 sx={{ mb:2 }}
                 // helperText={formik.touched.name && formik.errors.name}
-                label="Asset Name"
+                label="Fleet Name"
                 name="name"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
@@ -118,11 +118,10 @@ const Page = () => {
                 // error={!!(formik.touched.name && formik.errors.name)}
                 fullWidth
                 // helperText={formik.touched.name && formik.errors.name}
-                label="Asset Type"
+                label="Company"
                 name="name"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                required
                 // value={formik.values.name}
               />
                <TextField
@@ -130,26 +129,13 @@ const Page = () => {
                 // error={!!(formik.touched.name && formik.errors.name)}
                 fullWidth
                 // helperText={formik.touched.name && formik.errors.name}
-                label="Model Number"
+                label="Description"
                 name="name"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 // required
                 // value={formik.values.name}
               />
-               <TextField
-               sx={{ mb:2 }}
-                // error={!!(formik.touched.name && formik.errors.name)}
-                fullWidth
-                // helperText={formik.touched.name && formik.errors.name}
-                label="Serial Number"
-                name="name"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                // required
-                // value={formik.values.name}
-              />
-               {/* <textarea cols={5} rows={3}></textarea> */}
 
             </Grid>
 
@@ -167,7 +153,7 @@ const Page = () => {
             type="submit"
             variant="contained"
           >
-           Continue
+           Done
           </Button>
           {/* <Button
             color="inherit"

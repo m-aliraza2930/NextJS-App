@@ -153,7 +153,8 @@ export const useSections = () => {
               {
                 title: t(tokens.nav.tags),
                 // path: paths.dashboard.products.create,
-                path: paths.dashboard.customers.index,
+                // path: paths.dashboard.customers.index,
+                path: paths.dashboard.customers.tag
               },
             ],
           },
@@ -174,7 +175,8 @@ export const useSections = () => {
               {
                 title: t(tokens.nav.fleet),
                 // path: paths.dashboard.orders.details,
-                path: paths.dashboard.account
+                // path: paths.dashboard.account
+                path: paths.dashboard.customers.fleet
               },
             ],
           },
