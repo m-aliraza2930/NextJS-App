@@ -45,10 +45,15 @@ export const tokens = {
     postList: 'nav.postList',
     pricing: 'nav.pricing',
     productList: 'nav.products',
+    inventory: 'nav.inventory',
+    hubs: 'nav.hubs',
+    tags: 'nav.tags',
     profile: 'nav.profile',
     register: 'nav.register',
     resetPassword: 'nav.resetPassword',
     socialMedia: 'nav.socialMedia',
     verifyCode: 'nav.verifyCode',
+    settings: 'nav.settings',
+    map: 'nav.map'
   },
 };

@@ -110,33 +110,34 @@ export const useSections = () => {
         // ],
       },
       {
-        subheader: t(tokens.nav.concepts),
+        // subheader: t(tokens.nav.concepts),
         items: [
           {
-            title: t(tokens.nav.customers),
-            path: paths.dashboard.customers.index,
+            title: t(tokens.nav.map),
+            // path: paths.dashboard.customers.index,
+            path: paths.dashboard.logistics.fleet,
             icon: (
               <SvgIcon fontSize="small">
                 <Users03Icon />
               </SvgIcon>
             ),
-            items: [
-              {
-                title: t(tokens.nav.list),
-                path: paths.dashboard.customers.index,
-              },
-              {
-                title: t(tokens.nav.details),
-                path: paths.dashboard.customers.details,
-              },
-              {
-                title: t(tokens.nav.edit),
-                path: paths.dashboard.customers.edit,
-              },
-            ],
+            // items: [
+            //   {
+            //     title: t(tokens.nav.list),
+            //     path: paths.dashboard.customers.index,
+            //   },
+            //   {
+            //     title: t(tokens.nav.details),
+            //     path: paths.dashboard.customers.details,
+            //   },
+            //   {
+            //     title: t(tokens.nav.edit),
+            //     path: paths.dashboard.customers.edit,
+            //   },
+            // ],
           },
           {
-            title: t(tokens.nav.productList),
+            title: t(tokens.nav.inventory),
             path: paths.dashboard.products.index,
             icon: (
               <SvgIcon fontSize="small">
@@ -145,34 +146,38 @@ export const useSections = () => {
             ),
             items: [
               {
-                title: t(tokens.nav.list),
-                path: paths.dashboard.products.index,
+                title: t(tokens.nav.hubs),
+                // path: paths.dashboard.products.index,
+                path: paths.dashboard.customers.index,
               },
               {
-                title: t(tokens.nav.create),
-                path: paths.dashboard.products.create,
+                title: t(tokens.nav.tags),
+                // path: paths.dashboard.products.create,
+                path: paths.dashboard.customers.index,
               },
             ],
           },
-          // {
-          //   title: t(tokens.nav.orderList),
-          //   icon: (
-          //     <SvgIcon fontSize="small">
-          //       <ShoppingCart01Icon />
-          //     </SvgIcon>
-          //   ),
-          //   path: paths.dashboard.orders.index,
-          //   items: [
-          //     {
-          //       title: t(tokens.nav.list),
-          //       path: paths.dashboard.orders.index,
-          //     },
-          //     {
-          //       title: t(tokens.nav.details),
-          //       path: paths.dashboard.orders.details,
-          //     },
-          //   ],
-          // },
+          {
+            title: t(tokens.nav.settings),
+            icon: (
+              <SvgIcon fontSize="small">
+                <Lock01Icon />
+              </SvgIcon>
+            ),
+            path: paths.dashboard.orders.index,
+            items: [
+              {
+                title: t(tokens.nav.account),
+                // path: paths.dashboard.orders.index,
+                path: paths.dashboard.account
+              },
+              {
+                title: t(tokens.nav.fleet),
+                // path: paths.dashboard.orders.details,
+                path: paths.dashboard.account
+              },
+            ],
+          },
           // {
           //   title: t(tokens.nav.invoiceList),
           //   path: paths.dashboard.invoices.index,

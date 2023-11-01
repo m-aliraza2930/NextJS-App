@@ -12,7 +12,7 @@ import { usePopover } from 'src/hooks/use-popover';
 
 import { TenantPopover } from './tenant-popover';
 
-const tenants: string[] = ['Devias', 'Acme Corp'];
+const tenants: string[] = ['Devias', 'Acme Corp', 'Create New Fleet +'];
 
 interface TenantSwitchProps {
   sx?: SxProps;
