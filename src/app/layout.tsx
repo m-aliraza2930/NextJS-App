@@ -13,7 +13,7 @@ import type { Settings } from 'src/types/settings';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Devias Kit PRO',
+  title: 'Tough Trackers PRO',
   viewport: 'initial-scale=1, width=device-width',
   icons: {
     icon: [

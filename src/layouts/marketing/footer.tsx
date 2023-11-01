@@ -130,7 +130,7 @@ export const Footer: FC = (props) => (
                   },
                 }}
               >
-                Devias Kit <span>PRO</span>
+                Tough Trackers <span>PRO</span>
               </Box>
             </Stack>
             <Typography

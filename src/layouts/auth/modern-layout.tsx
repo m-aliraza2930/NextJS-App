@@ -58,7 +58,7 @@ export const Layout: FC<LayoutProps> = (props) => {
             sx={{ mb: 1 }}
             variant="h4"
           >
-            Welcome to Devias Kit PRO
+            Welcome to Tough Trackers PRO
           </Typography>
           <Typography
             color="text.secondary"
@@ -150,7 +150,7 @@ export const Layout: FC<LayoutProps> = (props) => {
                   },
                 }}
               >
-                Devias Kit <span>PRO</span>
+                Tough Trackers <span>PRO</span>
               </Box>
             </Stack>
           </Box>
