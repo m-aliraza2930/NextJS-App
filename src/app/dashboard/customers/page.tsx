@@ -21,6 +21,10 @@ import { useSelection } from 'src/hooks/use-selection';
 import { CustomerListSearch } from 'src/sections/dashboard/customer/customer-list-search';
 import { CustomerListTable } from 'src/sections/dashboard/customer/customer-list-table';
 import type { Customer } from 'src/types/customer';
+import { useRouter } from 'src/hooks/use-router';
+import { paths } from 'src/paths';
+import Link from '@mui/material/Link';
+import { RouterLink } from 'src/components/router-link';
 
 interface Filters {
   query?: string;
@@ -146,6 +150,7 @@ const Page = () => {
   const customersStore = useCustomersStore(customersSearch.state);
   const customersIds = useCustomersIds(customersStore.customers);
   const customersSelection = useSelection<string>(customersIds);
+  const router= useRouter()
 
   usePageView();
 
@@ -202,6 +207,7 @@ const Page = () => {
                 direction="row"
                 spacing={3}
               >
+                <Link component={RouterLink} href={paths.dashboard.customers.hub}>
                 <Button
                   startIcon={
                     <SvgIcon>
@@ -209,9 +215,12 @@ const Page = () => {
                     </SvgIcon>
                   }
                   variant="contained"
+                  // onClick={()=> router.push(paths.dashboard.customers.hub)}
                 >
                   Add
                 </Button>
+                </Link>
+
               </Stack>
             </Stack>
             <Card>

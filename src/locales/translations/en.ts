@@ -45,7 +45,7 @@ export const en = {
   [tokens.nav.productList]: 'Products',
   [tokens.nav.inventory]: 'Inventory',
   [tokens.nav.hubs]: 'Hubs',
-  [tokens.nav.tags]: 'Tokens',
+  [tokens.nav.tags]: 'Tags',
   [tokens.nav.profile]: 'Profile',
   [tokens.nav.register]: 'Register',
   [tokens.nav.settings]: 'SETTINGS',
