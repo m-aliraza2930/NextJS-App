@@ -28,7 +28,8 @@ export const gtmConfig = {
 };
 
 export const mapboxConfig = {
-  apiKey: process.env.NEXT_PUBLIC_MAPBOX_API_KEY,
+  apiKey:
+    'pk.eyJ1Ijoid29ya2Vyc2Vuc2UiLCJhIjoiY2xpZ2xoNHVrMGc0dTNjcXMyNzZkdnEwNSJ9.ai0-Ihnjn11JaGDVv7yoqA',
 };
 
 export const version = '6.4.2';
