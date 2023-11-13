@@ -25,6 +25,7 @@ export const AuthGuard: FC<AuthGuardProps> = (props) => {
   const [checked, setChecked] = useState<boolean>(false);
 
   const check = useCallback(() => {
+    console.log("iam in gaurd")
     if (!isAuthenticated) {
       const searchParams = new URLSearchParams({ returnTo: window.location.pathname }).toString();
       const href = loginPaths[issuer] + `?${searchParams}`;

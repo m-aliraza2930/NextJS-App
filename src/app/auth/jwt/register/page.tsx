@@ -23,7 +23,11 @@ import { usePageView } from 'src/hooks/use-page-view';
 import { useRouter } from 'src/hooks/use-router';
 import { useSearchParams } from 'src/hooks/use-search-params';
 import { paths } from 'src/paths';
+import { authApi } from 'src/api/auth';
 import { AuthIssuer } from 'src/sections/auth/auth-issuer';
+import { request } from 'http';
+import toast from 'react-hot-toast';
+
 
 interface Values {
   email: string;
@@ -59,11 +63,12 @@ const Page = () => {
     validationSchema,
     onSubmit: async (values, helpers): Promise<void> => {
       try {
-        await signUp(values.email, values.name, values.password);
-
-        if (isMounted()) {
-          router.push(returnTo || paths.dashboard.index);
-        }
+       const message= await authApi.signUp(values);
+       console.log("message===", message)
+        toast.success(message)
+        // if (isMounted()) {
+          router.push(paths.auth.jwt.verify);
+        // }
       } catch (err) {
         console.error(err);
 

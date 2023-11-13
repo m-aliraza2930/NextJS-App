@@ -22,14 +22,15 @@ type InitializeAction = {
   type: ActionType.INITIALIZE;
   payload: {
     isAuthenticated: boolean;
-    user: User | null;
+    accessToken:Object | null
+    // user: User | null;
   };
 };
 
 type SignInAction = {
   type: ActionType.SIGN_IN;
   payload: {
-    user: User;
+    accessToken:Object
   };
 };
 
@@ -50,37 +51,39 @@ type Handler = (state: State, action: any) => State;
 
 const handlers: Record<ActionType, Handler> = {
   INITIALIZE: (state: State, action: InitializeAction): State => {
-    const { isAuthenticated, user } = action.payload;
-
+    const { isAuthenticated, accessToken } = action.payload;
+    console.log("isAuthenticated",isAuthenticated)
+    console.log("accessToken",accessToken)
     return {
       ...state,
       isAuthenticated,
       isInitialized: true,
-      user,
+     accessToken
     };
   },
   SIGN_IN: (state: State, action: SignInAction): State => {
-    const { user } = action.payload;
-
+    const { accessToken } = action.payload;
+    console.log("payload==", accessToken)
     return {
       ...state,
       isAuthenticated: true,
-      user,
+      accessToken
+      // user,
     };
   },
-  SIGN_UP: (state: State, action: SignUpAction): State => {
-    const { user } = action.payload;
+  // SIGN_UP: (state: State, action: SignUpAction): State => {
+  //   const { user } = action.payload;
 
-    return {
-      ...state,
-      isAuthenticated: true,
-      user,
-    };
-  },
+  //   return {
+  //     ...state,
+  //     isAuthenticated: true,
+  //     user,
+  //   };
+  // },
   SIGN_OUT: (state: State): State => ({
     ...state,
     isAuthenticated: false,
-    user: null,
+    accessToken: null,
   }),
 };
 
@@ -98,15 +101,15 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
   const initialize = useCallback(async (): Promise<void> => {
     try {
       const accessToken = window.sessionStorage.getItem(STORAGE_KEY);
-
+      console.log("session token==", accessToken)
       if (accessToken) {
-        const user = await authApi.me({ accessToken });
-
+        // const user = await authApi.me({ accessToken });
+        console.log("iam in if")
         dispatch({
           type: ActionType.INITIALIZE,
           payload: {
             isAuthenticated: true,
-            user,
+           accessToken
           },
         });
       } else {
@@ -114,7 +117,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
           type: ActionType.INITIALIZE,
           payload: {
             isAuthenticated: false,
-            user: null,
+           accessToken:null
           },
         });
       }
@@ -124,7 +127,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
         type: ActionType.INITIALIZE,
         payload: {
           isAuthenticated: false,
-          user: null,
+         accessToken: null
         },
       });
     }
@@ -141,14 +144,15 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
   const signIn = useCallback(
     async (email: string, password: string): Promise<void> => {
       const  {accessToken}  = await authApi.signIn({ email, password });
-      const user = await authApi.me({ accessToken });
+      console.log("auth provider token", accessToken)
+      // const user = await authApi.me({ accessToken });
 
       sessionStorage.setItem(STORAGE_KEY, accessToken);
 
       dispatch({
         type: ActionType.SIGN_IN,
         payload: {
-          user,
+          accessToken
         },
       });
     },
@@ -183,8 +187,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
         ...state,
         issuer: Issuer.JWT,
         signIn,
-        signUp,
-        signOut,
+        signOut
       }}
     >
       {children}

@@ -13,6 +13,8 @@ export const paths = {
       register: '/auth/jwt/register',
       forgotPassword: '/auth/jwt/forgot-password',
       resetPassword: '/auth/jwt/reset-password',
+      verify:'/auth/jwt/verify',
+      resend: '/auth/jwt/resend-verification-code'
     },
     firebase: {
       login: '/auth/firebase/login',

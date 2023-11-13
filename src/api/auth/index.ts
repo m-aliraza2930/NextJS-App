@@ -64,35 +64,13 @@ type MeResponse = Promise<User>;
 class AuthApi {
   async signIn(request: SignInRequest) {
     const { email, password } = request;
-        await axios.post('https://gnx5mqqz88.execute-api.us-east-2.amazonaws.com/auth/sign-in',{
+       let resp= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/sign-in`,{
         email:email,
         password:password
       })
-      // console.log(accessToken)
-      // return accessToken.data.To
-    // await wait(500);
-    // const resp= axios.post(`${process.env.REACT_APP_PUBLIC_URL}/auth/sign-in`,{
-    //   email: email,
-    //   password:password
-    // })
-    // console.log("resp-----", resp)
-    // return resp
     return new Promise((resolve, reject) => {
       try {
-        // Merge static users (data file) with persisted users (browser storage)
-        const mergedUsers = [...users, ...getPersistedUsers()];
-
-        // Find the user
-        const user:any = mergedUsers.find((user) => user.email === email);
-
-        if (!user || user.password !== password) {
-          reject(new Error('Please check your email and password'));
-          return;
-        }
-
-        // Create the access token
-        const accessToken = sign({ userId: user.id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
-        console.log("accessToken===", accessToken)
+          let accessToken = resp.data?.idToken
         resolve({ accessToken });
       } catch (err) {
         console.error('[Auth Api]: ', err);
@@ -101,43 +79,46 @@ class AuthApi {
     });
   }
 
-  async signUp(request: SignUpRequest): SignUpResponse {
+  async signUp(request: SignUpRequest) {
     const { email, name, password } = request;
-
+    let resp= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/sign-up`,{
+      email:email,
+      password:password,
+      name: name
+    })
     await wait(1000);
+    return resp.data?.message
+  }
 
-    return new Promise((resolve, reject) => {
-      try {
-        // Merge static users (data file) with persisted users (browser storage)
-        const mergedUsers = [...users, ...getPersistedUsers()];
+  async verifyEmail(email:string, oneTimeCode:string){
+    let resp= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/verify`,{
+      email:email,
+      oneTimeCode:oneTimeCode,
+    })
+    return resp.data
+  }
 
-        // Check if a user already exists
-        let user = mergedUsers.find((user) => user.email === email);
+  async resendVerificationCode(email:string){
+    let resp= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/resend`,{
+      email:email,
+    })
+    return resp.data
+  }
 
-        if (user) {
-          reject(new Error('User already exists'));
-          return;
-        }
+  async forgotPassword(email:string){
+    let resp= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/password/forgot`,{
+      email:email,
+    })
+    return resp.data
+  }
 
-        user = {
-          id: createResourceId(),
-          avatar: undefined,
-          email,
-          name,
-          password,
-          plan: 'Standard',
-        };
-
-        persistUser(user);
-
-        const accessToken = sign({ userId: user.id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
-
-        resolve({ accessToken });
-      } catch (err) {
-        console.error('[Auth Api]: ', err);
-        reject(new Error('Internal server error'));
-      }
-    });
+  async resetPassword(email:string, oneTimeCode:string, password:string){
+    let resp= await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/password/confirm`,{
+      email:email,
+      oneTimeCode:oneTimeCode,
+      newPassword:password
+    })
+    return resp.data
   }
 
   me(request: MeRequest): MeResponse {

@@ -8,6 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import FormHelperText from '@mui/material/FormHelperText';
 import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
 
 import { Seo } from 'src/components/seo';
 import type { AuthContextType } from 'src/contexts/auth/amplify';
@@ -16,6 +17,7 @@ import { useMounted } from 'src/hooks/use-mounted';
 import { usePageView } from 'src/hooks/use-page-view';
 import { useRouter } from 'src/hooks/use-router';
 import { paths } from 'src/paths';
+import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 
 import { RouterLink } from 'src/components/router-link';
@@ -24,15 +26,18 @@ import toast from 'react-hot-toast';
 interface Values {
   email: string;
   submit: null;
+  oneTimeCode: string;
 }
 
 const initialValues: Values = {
   email: '',
+  oneTimeCode: '',
   submit: null,
 };
 
 const validationSchema = Yup.object({
   email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+  oneTimeCode: Yup.string().max(255).required('code is required'),
 });
 
 const Page = () => {
@@ -44,17 +49,16 @@ const Page = () => {
     validationSchema,
     onSubmit: async (values, helpers): Promise<void> => {
       try {
-        const response= await authApi.forgotPassword(values.email)
-        toast.success(response.message)
-
+       const response= await authApi.verifyEmail(values.email, values.oneTimeCode)
+       toast.success("Customer verified please login now")
+        router.push(paths.auth.jwt.login);
         if (isMounted()) {
-          const searchParams = new URLSearchParams({ username: values.email }).toString();
-          const href = paths.auth.jwt.resetPassword;
-          router.push(href);
+          // const searchParams = new URLSearchParams({ username: values.email }).toString();
+          // const href = paths.auth.amplify.resetPassword + `?${searchParams}`;
+          router.push(paths.auth.jwt.login);
         }
       } catch (err) {
         console.error(err);
-        toast.error(err.response.data.error.message)
 
         if (isMounted()) {
           helpers.setStatus({ success: false });
@@ -69,20 +73,21 @@ const Page = () => {
 
   return (
     <>
-      <Seo title="Forgot Password" />
+      <Seo title="Verify Customer" />
       <div>
         <Card elevation={16}>
           <CardHeader
             sx={{ pb: 0 }}
-            title="Forgot password"
+            title="Verify Customer"
           />
           <CardContent>
             <form
               noValidate
               onSubmit={formik.handleSubmit}
             >
+              <Stack spacing={3}>
               <TextField
-                autoFocus
+               autoFocus
                 error={!!(formik.touched.email && formik.errors.email)}
                 fullWidth
                 helperText={formik.touched.email && formik.errors.email}
@@ -93,6 +98,18 @@ const Page = () => {
                 type="email"
                 value={formik.values.email}
               />
+                <TextField
+                error={!!(formik.touched.oneTimeCode && formik.errors.oneTimeCode)}
+                fullWidth
+                helperText={formik.touched.oneTimeCode && formik.errors.oneTimeCode}
+                label="Code"
+                name="oneTimeCode"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                type="text"
+                value={formik.values.oneTimeCode}
+              />
+              </Stack>
               {formik.errors.submit && (
                 <FormHelperText
                   error
@@ -103,7 +120,7 @@ const Page = () => {
               )}
               {/* <Link
                 component={RouterLink}
-                href={paths.auth.jwt.resetPassword}
+                href={paths.auth.jwt.login}
                 underline="hover"
                 variant="subtitle2"
               > */}
@@ -115,8 +132,24 @@ const Page = () => {
                   type="submit"
                   variant="contained"
                 >
-                  Send reset link
+                  Verify Code
                 </Button>
+                <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  mt: 3,
+                }}
+              >
+                <Link
+                  component={RouterLink}
+                  href={paths.auth.jwt.resend}
+                  underline="hover"
+                  variant="subtitle2"
+                >
+                  Resend Verficiation Code?
+                </Link>
+              </Box>
               {/* </Link> */}
             </form>
           </CardContent>

@@ -191,6 +191,8 @@ import { useRouter } from 'src/hooks/use-router';
 import { useSearchParams } from 'src/hooks/use-search-params';
 import { paths } from 'src/paths';
 import { AuthIssuer } from 'src/sections/auth/auth-issuer';
+import toast from 'react-hot-toast';
+import { er } from '@fullcalendar/core/internal-common';
 
 interface Values {
   email: string;
@@ -199,8 +201,8 @@ interface Values {
 }
 
 const initialValues: Values = {
-  email: 'demo@devias.io',
-  password: 'Password123!',
+  email: '',
+  password: '',
   submit: null,
 };
 
@@ -221,13 +223,12 @@ const Page = () => {
     onSubmit: async (values, helpers): Promise<void> => {
       try {
         await signIn(values.email, values.password);
-
         if (isMounted()) {
           router.push(paths.dashboard.customers.index);
-          console.log('iam in mounted');
         }
       } catch (err) {
         console.error(err);
+        toast.error(err.response.data.error.message)
 
         if (isMounted()) {
           helpers.setStatus({ success: false });

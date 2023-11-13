@@ -55,14 +55,14 @@ const Page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const username = searchParams.get('username') || undefined;
-  const { forgotPasswordSubmit } = useAuth<AuthContextType>();
+  // const { forgotPasswordSubmit } = useAuth<AuthContextType>();
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: getInitialValues(username),
     validationSchema,
     onSubmit: async (values, helpers): Promise<void> => {
       try {
-        await forgotPasswordSubmit(values.email, values.code, values.password);
+        // await forgotPasswordSubmit(values.email, values.code, values.password);
 
         if (isMounted()) {
           const searchParams = new URLSearchParams({ username: values.email }).toString();
@@ -98,14 +98,14 @@ const Page = () => {
               onSubmit={formik.handleSubmit}
             >
               <Stack spacing={3}>
-                {username ? (
+                {/* {username ? (
                   <TextField
                     disabled
                     fullWidth
                     label="Email"
                     value={username}
                   />
-                ) : (
+                ) : ( */}
                   <TextField
                     autoFocus
                     error={!!(formik.touched.email && formik.errors.email)}
@@ -118,7 +118,7 @@ const Page = () => {
                     type="email"
                     value={formik.values.email}
                   />
-                )}
+                {/* // )} */}
                 <FormControl error={!!(formik.touched.code && formik.errors.code)}>
                   <FormLabel
                     sx={{

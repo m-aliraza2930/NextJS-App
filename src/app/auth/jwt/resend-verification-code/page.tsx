@@ -16,9 +16,6 @@ import { useMounted } from 'src/hooks/use-mounted';
 import { usePageView } from 'src/hooks/use-page-view';
 import { useRouter } from 'src/hooks/use-router';
 import { paths } from 'src/paths';
-import Link from '@mui/material/Link';
-
-import { RouterLink } from 'src/components/router-link';
 import { authApi } from 'src/api/auth';
 import toast from 'react-hot-toast';
 interface Values {
@@ -44,12 +41,12 @@ const Page = () => {
     validationSchema,
     onSubmit: async (values, helpers): Promise<void> => {
       try {
-        const response= await authApi.forgotPassword(values.email)
-        toast.success(response.message)
+        const response= await authApi.resendVerificationCode(values.email)
+        toast.success(response?.message)
 
         if (isMounted()) {
           const searchParams = new URLSearchParams({ username: values.email }).toString();
-          const href = paths.auth.jwt.resetPassword;
+          const href = paths.auth.jwt.verify;
           router.push(href);
         }
       } catch (err) {
@@ -69,12 +66,12 @@ const Page = () => {
 
   return (
     <>
-      <Seo title="Forgot Password" />
+      <Seo title="Rsend Verification Code" />
       <div>
         <Card elevation={16}>
           <CardHeader
             sx={{ pb: 0 }}
-            title="Forgot password"
+            title="Rsend Verification Code"
           />
           <CardContent>
             <form
@@ -115,7 +112,7 @@ const Page = () => {
                   type="submit"
                   variant="contained"
                 >
-                  Send reset link
+                  Resend Verification Code
                 </Button>
               {/* </Link> */}
             </form>

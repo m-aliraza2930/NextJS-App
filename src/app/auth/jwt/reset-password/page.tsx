@@ -24,29 +24,28 @@ import { usePageView } from 'src/hooks/use-page-view';
 import { useRouter } from 'src/hooks/use-router';
 import { useSearchParams } from 'src/hooks/use-search-params';
 import { paths } from 'src/paths';
+import { authApi } from 'src/api/auth';
+import toast from 'react-hot-toast';
 
 interface Values {
-  code: string;
+  // code: string;
   email: string;
-  password: string;
-  passwordConfirm: string;
+  newPassword: string;
+  oneTimeCode: string;
   submit: null;
 }
 
-const getInitialValues = (username?: string): Values => ({
-  code: '',
-  email: username || '',
-  password: '',
-  passwordConfirm: '',
+const  initialValues: Values = {
+  email: '',
+  newPassword: '',
+  oneTimeCode: '',
   submit: null,
-});
+};
 
 const validationSchema = Yup.object({
-  code: Yup.string().min(6).max(6).required('Code is required'),
   email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-  password: Yup.string().min(7, 'Must be at least 7 characters').max(255).required('Required'),
-  passwordConfirm: Yup.string()
-    .oneOf([Yup.ref('password')], 'Passwords must match')
+  newPassword: Yup.string().min(7, 'Must be at least 7 characters').max(255).required('Required'),
+  oneTimeCode: Yup.string()
     .required('Required'),
 });
 
@@ -57,16 +56,17 @@ const Page = () => {
   const username = searchParams.get('username') || undefined;
   const { forgotPasswordSubmit } = useAuth<AuthContextType>();
   const formik = useFormik({
-    enableReinitialize: true,
-    initialValues: getInitialValues(username),
+    initialValues,
     validationSchema,
     onSubmit: async (values, helpers): Promise<void> => {
       try {
-        await forgotPasswordSubmit(values.email, values.code, values.password);
 
+        // await forgotPasswordSubmit(values.email, values.code, values.password);
+        const response= await authApi.resetPassword(values.email, values.oneTimeCode, values.newPassword)
         if (isMounted()) {
+          toast.success(response.message)
           const searchParams = new URLSearchParams({ username: values.email }).toString();
-          const href = paths.auth.amplify.login + `?${searchParams}`;
+          const href = paths.auth.jwt.login;
           router.push(href);
         }
       } catch (err) {
@@ -98,14 +98,14 @@ const Page = () => {
               onSubmit={formik.handleSubmit}
             >
               <Stack spacing={3}>
-                {username ? (
-                  <TextField
+              {/* {username ? (
+                   <TextField
                     disabled
                     fullWidth
                     label="Email"
                     value={username}
                   />
-                ) : (
+                 ) : ( */}
                   <TextField
                     autoFocus
                     error={!!(formik.touched.email && formik.errors.email)}
@@ -118,7 +118,7 @@ const Page = () => {
                     type="email"
                     value={formik.values.email}
                   />
-                )}
+                 {/* )} */}
                 {/* <FormControl error={!!(formik.touched.code && formik.errors.code)}>
                   <FormLabel
                     sx={{
@@ -145,26 +145,26 @@ const Page = () => {
                   )}
                 </FormControl> */}
                 <TextField
-                  error={!!(formik.touched.password && formik.errors.password)}
+                  error={!!(formik.touched.newPassword && formik.errors.newPassword)}
                   fullWidth
-                  helperText={formik.touched.password && formik.errors.password}
-                  label="Password"
-                  name="password"
+                  helperText={formik.touched.newPassword && formik.errors.newPassword}
+                  label="New Password"
+                  name="newPassword"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   type="password"
-                  value={formik.values.password}
+                  value={formik.values.newPassword}
                 />
                 <TextField
-                  error={!!(formik.touched.passwordConfirm && formik.errors.passwordConfirm)}
+                  error={!!(formik.touched.oneTimeCode && formik.errors.oneTimeCode)}
                   fullWidth
-                  helperText={formik.touched.passwordConfirm && formik.errors.passwordConfirm}
-                  label="Password Confirmation"
-                  name="passwordConfirm"
+                  helperText={formik.touched.oneTimeCode && formik.errors.oneTimeCode}
+                  label="Code"
+                  name="oneTimeCode"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
-                  type="password"
-                  value={formik.values.passwordConfirm}
+                  type="text"
+                  value={formik.values.oneTimeCode}
                 />
               </Stack>
               {formik.errors.submit && (
@@ -194,7 +194,7 @@ const Page = () => {
               >
                 <Link
                   component={RouterLink}
-                  href={paths.auth.amplify.forgotPassword}
+                  href={paths.auth.jwt.forgotPassword}
                   underline="hover"
                   variant="subtitle2"
                 >
