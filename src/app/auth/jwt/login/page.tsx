@@ -228,8 +228,7 @@ const Page = () => {
         }
       } catch (err) {
         console.error(err);
-        toast.error(err.response.data.error.message)
-
+        toast.error(err?.response?.data?.error?.message)
         if (isMounted()) {
           helpers.setStatus({ success: false });
           helpers.setErrors({ submit: err.message });

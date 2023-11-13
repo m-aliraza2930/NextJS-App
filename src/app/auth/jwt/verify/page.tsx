@@ -49,7 +49,7 @@ const Page = () => {
     validationSchema,
     onSubmit: async (values, helpers): Promise<void> => {
       try {
-       const response= await authApi.verifyEmail(values.email, values.oneTimeCode)
+       await authApi.verifyEmail(values.email, values.oneTimeCode)
        toast.success("Customer verified please login now")
         router.push(paths.auth.jwt.login);
         if (isMounted()) {
@@ -59,7 +59,7 @@ const Page = () => {
         }
       } catch (err) {
         console.error(err);
-
+        toast.error(err?.response?.data?.error?.message)
         if (isMounted()) {
           helpers.setStatus({ success: false });
           helpers.setErrors({ submit: err.message });

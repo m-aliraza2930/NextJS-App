@@ -64,14 +64,12 @@ const Page = () => {
     onSubmit: async (values, helpers): Promise<void> => {
       try {
        const message= await authApi.signUp(values);
-       console.log("message===", message)
         toast.success(message)
         // if (isMounted()) {
           router.push(paths.auth.jwt.verify);
         // }
       } catch (err) {
         console.error(err);
-
         if (isMounted()) {
           helpers.setStatus({ success: false });
           helpers.setErrors({ submit: err.message });
