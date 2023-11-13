@@ -41,9 +41,8 @@ const Page = () => {
     validationSchema,
     onSubmit: async (values, helpers): Promise<void> => {
       try {
-        const response= await authApi.resendVerificationCode(values.email)
-        toast.success(response?.message)
-
+        await authApi.resendVerificationCode(values.email)
+        toast.success("Verification code is sent to your email please verify now")
         if (isMounted()) {
           const searchParams = new URLSearchParams({ username: values.email }).toString();
           const href = paths.auth.jwt.verify;
