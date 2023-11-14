@@ -27,6 +27,7 @@ import { authApi } from 'src/api/auth';
 import { AuthIssuer } from 'src/sections/auth/auth-issuer';
 import { request } from 'http';
 import toast from 'react-hot-toast';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 interface Values {
@@ -182,7 +183,19 @@ const Page = () => {
                   {formik.errors.submit as string}
                 </FormHelperText>
               )}
-              <Button
+              {formik.isSubmitting?(
+                  <Button
+                  disabled={formik.isSubmitting}
+                  fullWidth
+                  size="large"
+                  sx={{ mt: 2 }}
+                  type="button"
+                  variant="contained"
+                >
+                  <CircularProgress size={25} />
+                </Button>
+              ):(
+                <Button
                 disabled={formik.isSubmitting}
                 fullWidth
                 size="large"
@@ -192,6 +205,8 @@ const Page = () => {
               >
                 Register
               </Button>
+              )}
+
             </form>
           </CardContent>
         </Card>

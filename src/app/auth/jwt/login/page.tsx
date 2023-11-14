@@ -193,6 +193,7 @@ import { paths } from 'src/paths';
 import { AuthIssuer } from 'src/sections/auth/auth-issuer';
 import toast from 'react-hot-toast';
 import { er } from '@fullcalendar/core/internal-common';
+import CircularProgress from '@mui/material/CircularProgress';
 
 interface Values {
   email: string;
@@ -303,16 +304,32 @@ const Page = () => {
                   {formik.errors.submit as string}
                 </FormHelperText>
               )}
-              <Button
-                disabled={formik.isSubmitting}
-                fullWidth
-                size="large"
-                sx={{ mt: 2 }}
-                type="submit"
-                variant="contained"
-              >
-                Log In
-              </Button>
+              {
+                formik.isSubmitting?(
+                  <Button
+                  disabled={formik.isSubmitting}
+                  fullWidth
+                  size="large"
+                  sx={{ mt: 2 }}
+                  type="button"
+                  variant="contained"
+                >
+                    <CircularProgress size={25} />
+                </Button>
+                ):(
+                  <Button
+                  disabled={formik.isSubmitting}
+                  fullWidth
+                  size="large"
+                  sx={{ mt: 2 }}
+                  type="submit"
+                  variant="contained"
+                >
+                  Log In
+                </Button>
+                )
+              }
+
               <div style={{ width: '100%', textAlign: 'right' }}>
                 <Link
                   component={RouterLink}

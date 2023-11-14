@@ -23,6 +23,8 @@ import Link from '@mui/material/Link';
 import { RouterLink } from 'src/components/router-link';
 import { authApi } from 'src/api/auth';
 import toast from 'react-hot-toast';
+import CircularProgress from '@mui/material/CircularProgress';
+
 interface Values {
   email: string;
   submit: null;
@@ -124,6 +126,18 @@ const Page = () => {
                 underline="hover"
                 variant="subtitle2"
               > */}
+              {formik.isSubmitting?(
+                <Button
+                disabled={formik.isSubmitting}
+                fullWidth
+                size="large"
+                sx={{ mt: 3 }}
+                type="button"
+                variant="contained"
+              >
+                <CircularProgress size={25} />
+              </Button>
+              ):(
                 <Button
                   disabled={formik.isSubmitting}
                   fullWidth
@@ -134,6 +148,7 @@ const Page = () => {
                 >
                   Verify Code
                 </Button>
+              )}
                 <Box
                 sx={{
                   display: 'flex',
