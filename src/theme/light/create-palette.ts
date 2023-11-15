@@ -35,7 +35,7 @@ export const createPalette = (config: Config): PaletteOptions => {
     primary: getPrimary(colorPreset),
     success,
     text: {
-      primary: neutral[900],
+      primary: neutral[500],
       secondary: neutral[500],
       disabled: alpha(neutral[900], 0.38),
     },

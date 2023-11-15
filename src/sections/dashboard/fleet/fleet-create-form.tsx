@@ -107,7 +107,7 @@ export const FleetCreate: FC = () => {
                 }),
               }}
             >
-              Pleas enter fleet information
+              Please enter fleet information
             </StepContent>
             <TextField
               autoFocus
