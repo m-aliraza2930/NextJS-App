@@ -73,6 +73,8 @@ export const paths = {
       edit: '/dashboard/customers/:customerId/edit',
       hub: '/dashboard/hub',
       tag: '/dashboard/tags',
+      createTags: '/dashboard/create-tags',
+      createTagsStep: '/dashboard/create-tags',
       fleet: '/dashboard/fleet'
     },
     ecommerce: '/dashboard/ecommerce',

@@ -1,3 +1,5 @@
+'use client';
+
 import type { FC } from 'react';
 import { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -11,8 +13,9 @@ import type { StepIconProps } from '@mui/material/StepIcon';
 import SvgIcon from '@mui/material/SvgIcon';
 import Typography from '@mui/material/Typography';
 
-import { JobCategoryStep } from './fleet-category-step';
-import { JobPreview } from './fleet-preview';
+import JobCategoryStep  from './tag-category-step';
+import JobDescriptionStep from './tag-description-step';
+import JobPreview  from './tag-preview';
 
 const StepIcon: FC<StepIconProps> = (props) => {
   const { active, completed, icon } = props;
@@ -48,7 +51,7 @@ StepIcon.propTypes = {
   icon: PropTypes.node.isRequired,
 };
 
-const FleetCreate: FC = () => {
+const tabCreateForm: FC = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
   const [isComplete, setIsComplete] = useState<boolean>(false);
 
@@ -67,32 +70,23 @@ const FleetCreate: FC = () => {
   const steps = useMemo(() => {
     return [
       {
-        label: 'FLEET DETAILS',
+        label: 'Category',
         content: (
           <JobCategoryStep
+            onBack={handleBack}
+            onNext={handleNext}
+          />
+        ),
+      },
+      {
+        label: 'Description',
+        content: (
+          <JobDescriptionStep
             onBack={handleBack}
             onNext={handleComplete}
           />
         ),
       },
-      // {
-      //   label: 'Job Details',
-      //   content: (
-      //     <JobDetailsStep
-      //       onBack={handleBack}
-      //       onNext={handleNext}
-      //     />
-      //   ),
-      // },
-      // {
-      //   label: 'Description',
-      //   content: (
-      //     <JobDescriptionStep
-      //       onBack={handleBack}
-      //       onNext={handleComplete}
-      //     />
-      //   ),
-      // },
     ];
   }, [handleBack, handleNext, handleComplete]);
 
@@ -143,4 +137,4 @@ const FleetCreate: FC = () => {
     </Stepper>
   );
 };
-export default FleetCreate;
+export default tabCreateForm;

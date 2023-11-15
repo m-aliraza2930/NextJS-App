@@ -8,14 +8,14 @@ import Grid from '@mui/material/Grid';
 
 import { Seo } from 'src/components/seo';
 import { usePageView } from 'src/hooks/use-page-view';
-import HubCreate from 'src/sections/dashboard/hub/hub-create-form';
+import TagCreate from 'src/sections/dashboard/create-tags/tag-create-form';
 
 const Page = () => {
   usePageView();
 
   return (
     <>
-      <Seo title="Dashboard: Add Hub" />
+      <Seo title="Dashboard: Fleet Create" />
       <Box
         component="main"
         sx={{
@@ -32,7 +32,7 @@ const Page = () => {
             md={5}
             sm={4}
             sx={{
-              backgroundImage: 'url(/assets/admin/hub.svg)',
+              backgroundImage: 'url(/assets/admin/tag.svg)',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
@@ -57,8 +57,8 @@ const Page = () => {
               maxWidth="sm"
               spacing={3}
             >
-              <Typography variant="h4">Add Hub</Typography>
-              <HubCreate />
+              <Typography variant="h4">Add Tag</Typography>
+              <TagCreate />
             </Stack>
           </Grid>
         </Grid>
@@ -68,3 +68,4 @@ const Page = () => {
 };
 
 export default Page;
+ 

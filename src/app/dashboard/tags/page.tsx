@@ -156,7 +156,7 @@ const Page = () => {
 
   return (
     <>
-      <Seo title="Dashboard: Customer List" />
+      <Seo title="Dashboard: Add Tags" />
       <Box
         component="main"
         sx={{
@@ -209,7 +209,7 @@ const Page = () => {
               >
                 <Link
                   component={RouterLink}
-                  href={paths.dashboard.customers.hub}
+                  href={paths.dashboard.customers.createTags}
                 >
                   <Button
                     startIcon={
@@ -218,7 +218,7 @@ const Page = () => {
                       </SvgIcon>
                     }
                     variant="contained"
-                    // onClick={()=> router.push(paths.dashboard.customers.hub)}
+                    onClick={()=> router.push(paths.dashboard.customers.createTags)}
                   >
                     Add
                   </Button>

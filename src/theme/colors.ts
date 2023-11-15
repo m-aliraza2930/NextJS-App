@@ -58,13 +58,13 @@ export const purple = withAlphas({
   main: '#9E77ED',
   dark: '#6941C6',
   darkest: '#42307D',
-  contrastText: '#FFFFFF',
+  contrastText: '#004EEB',
 });
 
 export const success = withAlphas({
   lightest: '#F0FDF9',
   light: '#3FC79A',
-  main: '#10B981',
+  main: '#F7C600',
   dark: '#0B815A',
   darkest: '#134E48',
   contrastText: '#FFFFFF',
