@@ -24,6 +24,7 @@ import { Scrollbar } from 'src/components/scrollbar';
 import { paths } from 'src/paths';
 import type { Customer } from 'src/types/customer';
 import { getInitials } from 'src/utils/get-initials';
+import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 
 interface CustomerListTableProps {
   count?: number;
@@ -40,6 +41,7 @@ interface CustomerListTableProps {
 }
 
 export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
+  const theme = useTheme();
   const {
     count = 0,
     items = [],
@@ -53,7 +55,14 @@ export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
     rowsPerPage = 0,
     selected = [],
   } = props;
-
+  const spanStyle = {
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.neutral[200] : theme.palette.neutral[900],
+    borderRadius: '10px',
+    paddingLeft: '4px',
+    paddingRight: '4px',
+    color: 'whit',
+  };
   const selectedSome = selected.length > 0 && selected.length < items.length;
   const selectedAll = items.length > 0 && selected.length === items.length;
   const enableBulkActions = selected.length > 0;
@@ -120,10 +129,11 @@ export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
                   }}
                 />
               </TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Location</TableCell>
-              <TableCell>Orders</TableCell>
-              <TableCell>Spent</TableCell>
+              <TableCell>HUB</TableCell>
+              <TableCell>IN USE</TableCell>
+              <TableCell>STORED</TableCell>
+              <TableCell>BATTERY LEVEL</TableCell>
+              <TableCell>LAST SEEN</TableCell>
               <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -185,8 +195,14 @@ export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
                       </div>
                     </Stack>
                   </TableCell>
-                  <TableCell>{location}</TableCell>
+                  <TableCell sx={{ fontSize: '13px' }}>{location}</TableCell>
                   <TableCell>{customer.totalOrders}</TableCell>
+                  <TableCell>
+                    <Typography variant="subtitle2">
+                      {' '}
+                      <span style={spanStyle}>{totalSpent}</span>
+                    </Typography>
+                  </TableCell>
                   <TableCell>
                     <Typography variant="subtitle2">{totalSpent}</Typography>
                   </TableCell>
@@ -195,7 +211,7 @@ export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
                       component={RouterLink}
                       href={paths.dashboard.customers.edit}
                     >
-                      <SvgIcon>
+                      <SvgIcon fontSize="small">
                         <Edit02Icon />
                       </SvgIcon>
                     </IconButton>
@@ -203,7 +219,7 @@ export const CustomerListTable: FC<CustomerListTableProps> = (props) => {
                       component={RouterLink}
                       href={paths.dashboard.customers.details}
                     >
-                      <SvgIcon>
+                      <SvgIcon fontSize="small">
                         <ArrowRightIcon />
                       </SvgIcon>
                     </IconButton>

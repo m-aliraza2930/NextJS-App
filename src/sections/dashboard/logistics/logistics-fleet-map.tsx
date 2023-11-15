@@ -81,8 +81,8 @@ export const LogisticsFleetMap: FC<LogisticsFleetMapProps> = (props) => {
 
   const mapStyle =
     theme.palette.mode === 'dark'
-      ? 'mapbox://styles/mapbox/dark-v9'
-      : 'mapbox://styles/mapbox/light-v9';
+      ? 'mapbox://styles/mapbox/satellite-streets-v12'
+      : 'mapbox://styles/mapbox/satellite-streets-v12';
 
   if (!mapboxConfig.apiKey) {
     return (

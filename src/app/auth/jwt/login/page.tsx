@@ -225,11 +225,11 @@ const Page = () => {
       try {
         await signIn(values.email, values.password);
         if (isMounted()) {
-          router.push(paths.dashboard.customers.index);
+          router.push(paths.dashboard.logistics.fleet);
         }
       } catch (err) {
         console.error(err);
-        toast.error(err?.response?.data?.error?.message)
+        toast.error(err?.response?.data?.error?.message);
         if (isMounted()) {
           helpers.setStatus({ success: false });
           helpers.setErrors({ submit: err.message });
@@ -304,9 +304,8 @@ const Page = () => {
                   {formik.errors.submit as string}
                 </FormHelperText>
               )}
-              {
-                formik.isSubmitting?(
-                  <Button
+              {formik.isSubmitting ? (
+                <Button
                   disabled={formik.isSubmitting}
                   fullWidth
                   size="large"
@@ -314,10 +313,10 @@ const Page = () => {
                   type="button"
                   variant="contained"
                 >
-                    <CircularProgress size={25} />
+                  <CircularProgress size={25} />
                 </Button>
-                ):(
-                  <Button
+              ) : (
+                <Button
                   disabled={formik.isSubmitting}
                   fullWidth
                   size="large"
@@ -327,8 +326,7 @@ const Page = () => {
                 >
                   Log In
                 </Button>
-                )
-              }
+              )}
 
               <div style={{ width: '100%', textAlign: 'right' }}>
                 <Link

@@ -32,7 +32,7 @@ const useCssVars = (color: NavColor): Record<string, string> => {
         if (theme.palette.mode === 'dark') {
           return {
             '--nav-bg': theme.palette.background.default,
-            '--nav-color': theme.palette.neutral[100],
+            '--nav-color': theme.palette.neutral[500],
             '--nav-border-color': theme.palette.neutral[700],
             '--nav-logo-border': theme.palette.neutral[700],
             '--nav-section-title-color': theme.palette.neutral[400],
@@ -138,7 +138,7 @@ const useCssVars = (color: NavColor): Record<string, string> => {
             '--nav-item-active-color': theme.palette.common.white,
             '--nav-item-disabled-color': theme.palette.neutral[500],
             '--nav-item-icon-color': theme.palette.neutral[400],
-            '--nav-item-icon-active-color': theme.palette.primary.main,
+            '--nav-item-icon-active-color': '#F7C600',
             '--nav-item-icon-disabled-color': theme.palette.neutral[500],
             '--nav-item-chevron-color': theme.palette.neutral[600],
             '--nav-scrollbar-color': theme.palette.neutral[400],
@@ -205,6 +205,8 @@ export const SideNav: FC<SideNavProps> = (props) => {
                 borderStyle: 'solid',
                 borderWidth: 1,
                 display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 height: 40,
                 p: '4px',
                 width: 40,
@@ -231,30 +233,31 @@ export const SideNav: FC<SideNavProps> = (props) => {
               />
             ))}
           </Stack>
-          {/* <Box sx={{ p: 3 }}>
-            <Typography variant="subtitle1">Need help?</Typography>
-            <Typography
+          <Box sx={{ p: 3 }}>
+            {/* {/ <Typography variant="subtitle1">Need help?</Typography> /} */}
+            {/* <Typography
               color="neutral.400"
               sx={{ mb: 2 }}
               variant="body2"
             >
               Please check our docs.
-            </Typography>
+            </Typography> */}
             <Button
+              sx={{ color: 'white', borderColor: 'white' }}
               component="a"
               fullWidth
-              href={paths.docs}
+              // href={paths.docs}
               startIcon={
                 <SvgIcon>
                   <File04Icon />
                 </SvgIcon>
               }
               target="_blank"
-              variant="contained"
+              variant="outlined"
             >
-              Documentation
+              Contact Support
             </Button>
-          </Box> */}
+          </Box>
         </Stack>
       </Scrollbar>
     </Drawer>

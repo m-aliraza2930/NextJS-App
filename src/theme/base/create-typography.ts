@@ -28,8 +28,8 @@ export const createTypography = (): TypographyOptions => {
       lineHeight: 1.57,
     },
     subtitle2: {
-      fontSize: '0.875rem',
-      fontWeight: 500,
+      fontSize: '0.8rem',
+      fontWeight: 600,
       lineHeight: 1.57,
     },
     overline: {
