@@ -13,16 +13,16 @@ const withAlphas = (color: PaletteColor): PaletteColor => {
 };
 
 export const neutral: ColorRange = {
-  50: '#F8F9FA',
-  100: '#F3F4F6',
-  200: '#E5E7EB',
-  300: '#D2D6DB',
-  400: '#9DA4AE',
-  500: '#6C737F',
-  600: '#4D5761',
-  700: '#2F3746',
-  800: '#1C2536',
-  900: '#111927',
+  50: '#f2f2f2',
+  100: '#e8e8e8',
+  200: '#c4c4c4', // inputs border color
+  300: '#a3a3a3',
+  400: '#B5BCC4', //nav text color
+  500: '#0d0808', //other text and icons color
+  600: '#141212', //arrow icon colors
+  700: '#120d0d', //log border
+  800: '#171717', // nav bar background color
+  900: '#F7C600',
 };
 
 export const blue = withAlphas({
@@ -46,9 +46,9 @@ export const green = withAlphas({
 export const indigo = withAlphas({
   lightest: '#F5F7FF',
   light: '#EBEEFE',
-  main: '#6366F1',
-  dark: '#4338CA',
-  darkest: '#312E81',
+  main: '#F7C600',
+  dark: '#111927',
+  darkest: '#000000',
   contrastText: '#FFFFFF',
 });
 
@@ -58,13 +58,13 @@ export const purple = withAlphas({
   main: '#9E77ED',
   dark: '#6941C6',
   darkest: '#42307D',
-  contrastText: '#FFFFFF',
+  contrastText: '#004EEB',
 });
 
 export const success = withAlphas({
   lightest: '#F0FDF9',
   light: '#3FC79A',
-  main: '#10B981',
+  main: '#F7C600',
   dark: '#0B815A',
   darkest: '#134E48',
   contrastText: '#FFFFFF',

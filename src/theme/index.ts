@@ -21,6 +21,7 @@ declare module '@mui/material/styles/createPalette' {
 
   interface Palette {
     neutral: ColorRange;
+    yellow: ColorRange;
   }
 
   interface PaletteColor {
@@ -35,6 +36,7 @@ declare module '@mui/material/styles/createPalette' {
 
   interface PaletteOptions {
     neutral?: ColorRange;
+    yellow?: ColorRange;
   }
 
   interface TypeBackground {

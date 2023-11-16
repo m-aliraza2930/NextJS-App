@@ -150,7 +150,7 @@ const Page = () => {
   const customersStore = useCustomersStore(customersSearch.state);
   const customersIds = useCustomersIds(customersStore.customers);
   const customersSelection = useSelection<string>(customersIds);
-  const router= useRouter()
+  const router = useRouter();
 
   usePageView();
 
@@ -172,7 +172,7 @@ const Page = () => {
               spacing={4}
             >
               <Stack spacing={1}>
-                <Typography variant="h4">Customers</Typography>
+                <Typography variant="h4">Hubs</Typography>
                 <Stack
                   alignItems="center"
                   direction="row"
@@ -207,20 +207,22 @@ const Page = () => {
                 direction="row"
                 spacing={3}
               >
-                <Link component={RouterLink} href={paths.dashboard.customers.hub}>
-                <Button
-                  startIcon={
-                    <SvgIcon>
-                      <PlusIcon />
-                    </SvgIcon>
-                  }
-                  variant="contained"
-                  // onClick={()=> router.push(paths.dashboard.customers.hub)}
+                <Link
+                  component={RouterLink}
+                  href={paths.dashboard.customers.hub}
                 >
-                  Add
-                </Button>
+                  <Button
+                    startIcon={
+                      <SvgIcon>
+                        <PlusIcon />
+                      </SvgIcon>
+                    }
+                    variant="contained"
+                    // onClick={()=> router.push(paths.dashboard.customers.hub)}
+                  >
+                    Add
+                  </Button>
                 </Link>
-
               </Stack>
             </Stack>
             <Card>

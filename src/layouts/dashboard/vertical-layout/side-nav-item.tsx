@@ -52,6 +52,7 @@ export const SideNavItem: FC<SideNavItemProps> = (props) => {
     startIcon = (
       <Box
         sx={{
+          border: 'red solid 1px',
           alignItems: 'center',
           display: 'center',
           height: 20,

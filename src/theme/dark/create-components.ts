@@ -1,175 +1,79 @@
-import { alpha } from '@mui/system/colorManipulator';
-import { backdropClasses } from '@mui/material/Backdrop';
-import { filledInputClasses } from '@mui/material/FilledInput';
-import { outlinedInputClasses } from '@mui/material/OutlinedInput';
-import { paperClasses } from '@mui/material/Paper';
-import { tableCellClasses } from '@mui/material/TableCell';
-import { common } from '@mui/material/colors';
-import type { Components } from '@mui/material/styles/components';
-import type { PaletteColor, PaletteOptions } from '@mui/material/styles/createPalette';
+import type { TypographyOptions } from '@mui/material/styles/createTypography';
 
-interface Config {
-  palette: PaletteOptions;
-}
-
-export const createComponents = ({ palette }: Config): Components => {
+export const createTypography = (): TypographyOptions => {
   return {
-    MuiAvatar: {
-      styleOverrides: {
-        root: {
-          backgroundColor: palette.neutral![300],
-          color: common.black,
-        },
-      },
+    fontFamily:
+      '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
+    body1: {
+      fontSize: '1rem',
+      fontWeight: 400,
+      lineHeight: 1.5,
     },
-    MuiBackdrop: {
-      styleOverrides: {
-        root: {
-          [`&:not(.${backdropClasses.invisible})`]: {
-            backgroundColor: alpha(common.black, 0.5),
-          },
-        },
-      },
+    body2: {
+      fontSize: '0.875rem',
+      fontWeight: 400,
+      lineHeight: 1.57,
     },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          [`&.${paperClasses.elevation1}`]: {
-            boxShadow: '0px 5px 22px rgba(0, 0, 0, 0.08), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.06)',
-          },
-        },
-      },
+    button: {
+      fontWeight: 600,
     },
-    MuiChip: {
-      styleOverrides: {
-        icon: {
-          color: palette.action!.active,
-        },
-        root: {
-          borderColor: palette.neutral![700],
-        },
-      },
+    caption: {
+      fontSize: '0.75rem',
+      fontWeight: 500,
+      lineHeight: 1.66,
     },
-    MuiCssBaseline: {
-      styleOverrides: {
-        '#nprogress .bar': {
-          backgroundColor: (palette.primary as PaletteColor).main,
-        },
-        '.slick-dots li button': {
-          '&:before': {
-            fontSize: 10,
-            color: (palette.primary as PaletteColor).main,
-          },
-        },
-        '.slick-dots li.slick-active button': {
-          '&:before': {
-            color: (palette.primary as PaletteColor).main,
-          },
-        },
-      },
+    subtitle1: {
+      fontSize: '1rem',
+      fontWeight: 500,
+      lineHeight: 1.57,
     },
-    MuiInputBase: {
-      styleOverrides: {
-        input: {
-          '&::placeholder': {
-            color: palette.text!.secondary,
-          },
-        },
-      },
+    subtitle2: {
+      fontSize: '0.8rem',
+      fontWeight: 600,
+      lineHeight: 1.57,
     },
-    MuiFilledInput: {
-      styleOverrides: {
-        root: {
-          borderColor: palette.divider,
-          '&:hover': {
-            backgroundColor: palette.action!.hover,
-          },
-          [`&.${filledInputClasses.disabled}`]: {
-            backgroundColor: 'transparent',
-          },
-          [`&.${filledInputClasses.focused}`]: {
-            backgroundColor: 'transparent',
-            borderColor: (palette.primary as PaletteColor).main,
-            boxShadow: `${(palette.primary as PaletteColor).main} 0 0 0 2px`,
-          },
-          [`&.${filledInputClasses.error}`]: {
-            borderColor: (palette.error as PaletteColor).main,
-            boxShadow: `${(palette.error as PaletteColor).main} 0 0 0 2px`,
-          },
-        },
-      },
+    overline: {
+      fontSize: '0.75rem',
+      fontWeight: 600,
+      letterSpacing: '0.5px',
+      lineHeight: 2.5,
+      textTransform: 'uppercase',
     },
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
-          '&:hover': {
-            backgroundColor: palette.action!.hover,
-            [`& .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: palette.divider,
-            },
-          },
-          [`&.${outlinedInputClasses.focused}`]: {
-            backgroundColor: 'transparent',
-            [`& .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: (palette.primary as PaletteColor).main,
-              borderWidth: '3px',
-            },
-          },
-          [`&.${filledInputClasses.error}`]: {
-            [`& .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: (palette.error as PaletteColor).main,
-              borderWidth: '3px',
-            },
-          },
-        },
-        notchedOutline: {
-          borderColor: palette.divider,
-        },
-      },
+    h1: {
+      fontFamily: "'Plus Jakarta Sans', sans-serif",
+      fontWeight: 700,
+      fontSize: '3.5rem',
+      lineHeight: 1.2,
     },
-    MuiSwitch: {
-      styleOverrides: {
-        switchBase: {
-          color: palette.neutral![500],
-        },
-        track: {
-          backgroundColor: palette.neutral![400],
-          opacity: 1,
-        },
-      },
+    h2: {
+      fontFamily: "'Plus Jakarta Sans', sans-serif",
+      fontWeight: 700,
+      fontSize: '3rem',
+      lineHeight: 1.2,
     },
-    MuiTableCell: {
-      styleOverrides: {
-        root: {
-          borderBottomColor: palette.divider,
-        },
-      },
+    h3: {
+      fontFamily: "'Plus Jakarta Sans', sans-serif",
+      fontWeight: 700,
+      fontSize: '2.25rem',
+      lineHeight: 1.2,
     },
-    MuiTableHead: {
-      styleOverrides: {
-        root: {
-          [`& .${tableCellClasses.root}`]: {
-            backgroundColor: palette.neutral![800],
-            color: palette.neutral![400],
-          },
-        },
-      },
+    h4: {
+      fontFamily: "'Plus Jakarta Sans', sans-serif",
+      fontWeight: 700,
+      fontSize: '2rem',
+      lineHeight: 1.2,
     },
-    // @ts-ignore
-    MuiTimelineConnector: {
-      styleOverrides: {
-        root: {
-          backgroundColor: palette.divider,
-        },
-      },
+    h5: {
+      fontFamily: "'Plus Jakarta Sans', sans-serif",
+      fontWeight: 700,
+      fontSize: '1.5rem',
+      lineHeight: 1.2,
     },
-    MuiTooltip: {
-      styleOverrides: {
-        tooltip: {
-          backdropFilter: 'blur(6px)',
-          background: alpha(palette.neutral![900], 0.8),
-        },
-      },
+    h6: {
+      fontFamily: "'Plus Jakarta Sans', sans-serif",
+      fontWeight: 700,
+      fontSize: '1.125rem',
+      lineHeight: 1.2,
     },
   };
 };

@@ -1,71 +1,140 @@
-import { Card, CardContent, CardHeader, Grid, TextField } from '@mui/material';
-import { FC } from 'react';
+'use client';
 
-export const HubCreate: FC = () => {
+import type { FC } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
+import CheckIcon from '@untitled-ui/icons-react/build/esm/Check';
+import Avatar from '@mui/material/Avatar';
+import Step from '@mui/material/Step';
+import StepContent from '@mui/material/StepContent';
+import StepLabel from '@mui/material/StepLabel';
+import Stepper from '@mui/material/Stepper';
+import type { StepIconProps } from '@mui/material/StepIcon';
+import SvgIcon from '@mui/material/SvgIcon';
+import Typography from '@mui/material/Typography';
+
+import JobCategoryStep  from './hub-category-step';
+import JobDescriptionStep from './hub-description-step';
+import { JobPreview } from './hub-preview';
+
+const StepIcon: FC<StepIconProps> = (props) => {
+  const { active, completed, icon } = props;
+
+  const highlight = active || completed;
+
   return (
-    <form>
-      <Card>
-        <CardHeader title="Set up a new Hub">
-          <CardContent sx={{ pt: 0 }}>
-            <Grid
-              container
-              spacing={3}
-            >
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  label="Asset Name*"
-                  name="name"
-                  placeholder='Required'
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  label="Asset Type*"
-                  name="name"
-                  placeholder='Required'
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  label="Model Number"
-                  name="name"
-                  placeholder='Optional'
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  label="Serial Number"
-                  name="name"
-                  placeholder='Optional'
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <label>Description</label><br/>
-               <textarea name='' placeholder='optional'></textarea>
-              </Grid>
-            </Grid>
-          </CardContent>
-        </CardHeader>
-      </Card>
-    </form>
+    <Avatar
+      sx={{
+        height: 40,
+        width: 40,
+        ...(highlight && {
+          backgroundColor: 'primary.main',
+          color: 'primary.contrastText',
+        }),
+      }}
+      variant="rounded"
+    >
+      {completed ? (
+        <SvgIcon>
+          <CheckIcon />
+        </SvgIcon>
+      ) : (
+        icon
+      )}
+    </Avatar>
   );
 };
+
+StepIcon.propTypes = {
+  active: PropTypes.bool,
+  completed: PropTypes.bool,
+  icon: PropTypes.node.isRequired,
+};
+
+const hubCreateForm: FC = () => {
+  const [activeStep, setActiveStep] = useState<number>(0);
+  const [isComplete, setIsComplete] = useState<boolean>(false);
+
+  const handleNext = useCallback(() => {
+    setActiveStep((prevState) => prevState + 1);
+  }, []);
+
+  const handleBack = useCallback(() => {
+    setActiveStep((prevState) => prevState - 1);
+  }, []);
+
+  const handleComplete = useCallback(() => {
+    setIsComplete(true);
+  }, []);
+
+  const steps = useMemo(() => {
+    return [
+      {
+        label: 'Category',
+        content: (
+          <JobCategoryStep
+            onBack={handleBack}
+            onNext={handleNext}
+          />
+        ),
+      },
+      {
+        label: 'Description',
+        content: (
+          <JobDescriptionStep
+            onBack={handleBack}
+            onNext={handleComplete}
+          />
+        ),
+      },
+    ];
+  }, [handleBack, handleNext, handleComplete]);
+
+  if (isComplete) {
+    return <JobPreview />;
+  }
+
+  return (
+    <Stepper
+      activeStep={activeStep}
+      orientation="vertical"
+      sx={{
+        '& .MuiStepConnector-line': {
+          borderLeftColor: 'divider',
+          borderLeftWidth: 2,
+          ml: 1,
+        },
+      }}
+    >
+      {steps.map((step, index) => {
+        const isCurrentStep = activeStep === index;
+
+        return (
+          <Step key={step.label}>
+            <StepLabel StepIconComponent={StepIcon}>
+              <Typography
+                sx={{ ml: 2 }}
+                variant="overline"
+              >
+                {step.label}
+              </Typography>
+            </StepLabel>
+            <StepContent
+              sx={{
+                borderLeftColor: 'divider',
+                borderLeftWidth: 2,
+                ml: '20px',
+                ...(isCurrentStep && {
+                  py: 4,
+                }),
+              }}
+            >
+              {step.content}
+            </StepContent>
+          </Step>
+        );
+      })}
+    </Stepper>
+  );
+};
+export default hubCreateForm;

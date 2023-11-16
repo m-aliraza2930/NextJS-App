@@ -19,6 +19,12 @@ export const createComponents = (): Components => {
     },
     MuiButton: {
       styleOverrides: {
+        contained: {
+          backgroundColor: '#F7C600',
+          '&:hover': {
+            backgroundColor: '#D6A300',
+          },
+        },
         root: {
           borderRadius: '12px',
           textTransform: 'none',

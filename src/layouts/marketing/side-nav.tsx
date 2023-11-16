@@ -40,7 +40,7 @@ const items: Item[] = [
         items: [
           {
             title: 'Overview',
-            path: paths.dashboard.index,
+            path: paths.dashboard.logistics.fleet,
           },
           {
             title: 'Customers',
