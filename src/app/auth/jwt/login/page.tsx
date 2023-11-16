@@ -192,7 +192,6 @@ import { useSearchParams } from 'src/hooks/use-search-params';
 import { paths } from 'src/paths';
 import { AuthIssuer } from 'src/sections/auth/auth-issuer';
 import toast from 'react-hot-toast';
-import { er } from '@fullcalendar/core/internal-common';
 import CircularProgress from '@mui/material/CircularProgress';
 
 interface Values {
