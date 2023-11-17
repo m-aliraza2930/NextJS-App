@@ -62,7 +62,7 @@ export const Layout: FC<LayoutProps> = (props) => {
           </Typography>
           <Typography
             color="text.secondary"
-            sx={{ mb: 4 }}
+            sx={{ mb: 4,color:"#a3a3a3" }}
           >
             A professional kit that comes with ready-to-use MUI components developed with one common
             goal in mind, help you build faster & beautiful applications.
