@@ -63,7 +63,6 @@ export const Layout: FC<LayoutProps> = (props: LayoutProps) => {
           <AuthProvider>
             <AuthConsumer>
               {(auth) => (
-                console.log("auth===",auth.accessToken),
                 <SettingsProvider
                   onReset={resetSettings}
                   onUpdate={updateSettings}
