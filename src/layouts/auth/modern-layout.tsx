@@ -18,19 +18,19 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-export const Layout: FC<LayoutProps> = () => {
-  // const { children } = props;
+export const Layout: FC<LayoutProps> = (props) => {
+  const { children } = props;
 
   return (
     <Box
       sx={{
         backgroundColor: 'background.default',
-        // display: 'flex',
-        // flex: '1 1 auto',
-        // flexDirection: {
-        //   xs: 'column-reverse',
-        //   md: 'row',
-        // },
+        display: 'flex',
+        flex: '1 1 auto',
+        flexDirection: {
+          xs: 'column-reverse',
+          md: 'row',
+        },
       }}
     >
       <Box
@@ -38,7 +38,7 @@ export const Layout: FC<LayoutProps> = () => {
           alignItems: 'center',
           backgroundColor: 'neutral.800',
           backgroundImage: 'url("/assets/gradient-bg.svg")',
-          // backgroundPosition: 'top center',
+          backgroundPosition: 'top center',
           backgroundRepeat: 'no-repeat',
           color: 'common.white',
           display: 'flex',
@@ -49,7 +49,7 @@ export const Layout: FC<LayoutProps> = () => {
           justifyContent: 'center',
           p: {
             xs: 4,
-            md: 40,
+            md: 8,
           },
         }}
       >
@@ -62,7 +62,7 @@ export const Layout: FC<LayoutProps> = () => {
           </Typography>
           <Typography
             color="text.secondary"
-            sx={{ mb: 4,color:"#a3a3a3" }}
+            sx={{ mb: 4 }}
           >
             A professional kit that comes with ready-to-use MUI components developed with one common
             goal in mind, help you build faster & beautiful applications.
@@ -113,7 +113,7 @@ export const Layout: FC<LayoutProps> = () => {
             md: 8,
           },
           width: {
-            md: 800,
+            md: 600,
           },
         }}
       >
@@ -154,7 +154,7 @@ export const Layout: FC<LayoutProps> = () => {
               </Box>
             </Stack>
           </Box>
-          {/* {children} */}
+          {children}
         </div>
       </Box>
     </Box>
