@@ -51,8 +51,8 @@ const Page = () => {
     validationSchema,
     onSubmit: async (values, helpers): Promise<void> => {
       try {
-       await authApi.verifyEmail(values.email, values.oneTimeCode)
-       toast.success("Customer verified please login now")
+        await authApi.verifyEmail(values.email, values.oneTimeCode);
+        toast.success('Customer verified please login now');
         router.push(paths.auth.jwt.login);
         if (isMounted()) {
           // const searchParams = new URLSearchParams({ username: values.email }).toString();
@@ -61,7 +61,7 @@ const Page = () => {
         }
       } catch (err) {
         console.error(err);
-        toast.error(err?.response?.data?.error?.message)
+        toast.error(err?.response?.data?.error?.message);
         if (isMounted()) {
           helpers.setStatus({ success: false });
           helpers.setErrors({ submit: err.message });
@@ -88,29 +88,29 @@ const Page = () => {
               onSubmit={formik.handleSubmit}
             >
               <Stack spacing={3}>
-              <TextField
-               autoFocus
-                error={!!(formik.touched.email && formik.errors.email)}
-                fullWidth
-                helperText={formik.touched.email && formik.errors.email}
-                label="Email Address"
-                name="email"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                type="email"
-                value={formik.values.email}
-              />
                 <TextField
-                error={!!(formik.touched.oneTimeCode && formik.errors.oneTimeCode)}
-                fullWidth
-                helperText={formik.touched.oneTimeCode && formik.errors.oneTimeCode}
-                label="Code"
-                name="oneTimeCode"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                type="text"
-                value={formik.values.oneTimeCode}
-              />
+                  autoFocus
+                  error={!!(formik.touched.email && formik.errors.email)}
+                  fullWidth
+                  helperText={formik.touched.email && formik.errors.email}
+                  label="Email Address"
+                  name="email"
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  type="email"
+                  value={formik.values.email}
+                />
+                <TextField
+                  error={!!(formik.touched.oneTimeCode && formik.errors.oneTimeCode)}
+                  fullWidth
+                  helperText={formik.touched.oneTimeCode && formik.errors.oneTimeCode}
+                  label="Code"
+                  name="oneTimeCode"
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  type="text"
+                  value={formik.values.oneTimeCode}
+                />
               </Stack>
               {formik.errors.submit && (
                 <FormHelperText
@@ -126,18 +126,18 @@ const Page = () => {
                 underline="hover"
                 variant="subtitle2"
               > */}
-              {formik.isSubmitting?(
+              {formik.isSubmitting ? (
                 <Button
-                disabled={formik.isSubmitting}
-                fullWidth
-                size="large"
-                sx={{ mt: 3 }}
-                type="button"
-                variant="contained"
-              >
-                <CircularProgress size={25} />
-              </Button>
-              ):(
+                  disabled={formik.isSubmitting}
+                  fullWidth
+                  size="large"
+                  sx={{ mt: 3 }}
+                  type="button"
+                  variant="contained"
+                >
+                  <CircularProgress size={25} />
+                </Button>
+              ) : (
                 <Button
                   disabled={formik.isSubmitting}
                   fullWidth
@@ -149,7 +149,7 @@ const Page = () => {
                   Verify Code
                 </Button>
               )}
-                <Box
+              <Box
                 sx={{
                   display: 'flex',
                   justifyContent: 'center',
