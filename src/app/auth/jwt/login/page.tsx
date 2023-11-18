@@ -215,8 +215,10 @@ const Page = () => {
   const isMounted = useMounted();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const username = searchParams.get('username') || undefined;
   const returnTo = searchParams.get('returnTo');
   const { issuer, signIn } = useAuth<AuthContextType>();
+  initialValues.email= username || initialValues.email
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -271,7 +273,19 @@ const Page = () => {
               onSubmit={formik.handleSubmit}
             >
               <Stack spacing={3}>
-                <TextField
+              {username ? (
+                  <TextField
+                  sx={{ color: 'dark' }}
+                    disabled
+                    fullWidth
+                    label="Email"
+                    name="email"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={username}
+                  />
+                ):(
+                  <TextField
                   autoFocus
                   error={!!(formik.touched.email && formik.errors.email)}
                   fullWidth
@@ -283,6 +297,7 @@ const Page = () => {
                   type="email"
                   value={formik.values.email}
                 />
+                )}
                 <TextField
                   error={!!(formik.touched.password && formik.errors.password)}
                   fullWidth

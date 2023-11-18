@@ -24,6 +24,7 @@ import { RouterLink } from 'src/components/router-link';
 import { authApi } from 'src/api/auth';
 import toast from 'react-hot-toast';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useSearchParams } from 'src/hooks/use-search-params';
 
 interface Values {
   email: string;
@@ -45,7 +46,10 @@ const validationSchema = Yup.object({
 const Page = () => {
   const isMounted = useMounted();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const username = searchParams.get('username') || undefined;
   const { forgotPassword } = useAuth<AuthContextType>();
+  initialValues.email= username || initialValues.email
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -88,7 +92,19 @@ const Page = () => {
               onSubmit={formik.handleSubmit}
             >
               <Stack spacing={3}>
-                <TextField
+              {username ? (
+                  <TextField
+                  sx={{ color: 'dark' }}
+                    disabled
+                    fullWidth
+                    label="Email"
+                    name="email"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={username}
+                  />
+                ) : (
+                  <TextField
                   autoFocus
                   error={!!(formik.touched.email && formik.errors.email)}
                   fullWidth
@@ -100,6 +116,8 @@ const Page = () => {
                   type="email"
                   value={formik.values.email}
                 />
+                )}
+
                 <TextField
                   error={!!(formik.touched.oneTimeCode && formik.errors.oneTimeCode)}
                   fullWidth

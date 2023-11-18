@@ -65,9 +65,10 @@ const Page = () => {
     onSubmit: async (values, helpers): Promise<void> => {
       try {
        const message= await authApi.signUp(values);
+       const searchParams = new URLSearchParams({ username: values.email }).toString();
         toast.success(message)
         // if (isMounted()) {
-          router.push(paths.auth.jwt.verify);
+          router.push(paths.auth.jwt.verify+ `?${searchParams}`);
         // }
       } catch (err) {
         console.error(err);

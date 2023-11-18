@@ -50,7 +50,7 @@ const Page = () => {
 
         if (isMounted()) {
           const searchParams = new URLSearchParams({ username: values.email }).toString();
-          const href = paths.auth.jwt.resetPassword;
+          const href = paths.auth.jwt.resetPassword+ `?${searchParams}`;
           router.push(href);
         }
       } catch (err) {
