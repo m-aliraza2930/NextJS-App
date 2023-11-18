@@ -13,8 +13,8 @@ export const paths = {
       register: '/auth/jwt/register',
       forgotPassword: '/auth/jwt/forgot-password',
       resetPassword: '/auth/jwt/reset-password',
-      verify:'/auth/jwt/verify',
-      resend: '/auth/jwt/resend-verification-code'
+      verify: '/auth/jwt/verify',
+      resend: '/auth/jwt/resend-verification-code',
     },
     firebase: {
       login: '/auth/firebase/login',
@@ -75,7 +75,7 @@ export const paths = {
       tag: '/dashboard/tags',
       createTags: '/dashboard/create-tags',
       createTagsStep: '/dashboard/create-tags',
-      fleet: '/dashboard/fleet'
+      fleet: '/dashboard/fleet',
     },
     ecommerce: '/dashboard/ecommerce',
     fileManager: '/dashboard/file-manager',
