@@ -15,22 +15,26 @@ import { paths } from 'src/paths';
 
 import { HomeCodeSamples } from './home-code-samples';
 import Page from 'src/app/auth/jwt/login/page';
+import { Layout } from 'src/layouts/auth/modern-layout';
 
 export const HomeHero: FC = () => {
   const theme = useTheme();
 
   return (
-    <Box
-      sx={{
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'top center',
-        backgroundImage: 'url("/assets/gradient-bg.svg")',
-        pt: '120px',
-      }}
-    >
-      <Container maxWidth="sm">
-        <Page />
-      </Container>
-    </Box>
+    <>
+     {/* <Box
+    //   sx={{
+    //     backgroundRepeat: 'no-repeat',
+    //     backgroundPosition: 'top center',
+    //     backgroundImage: 'url("/assets/gradient-bg.svg")',
+    //     pt: '120px',
+    //   }}
+    // > */}
+      <Layout />
+       {/* <Container maxWidth="sm">
+         <Page />
+       </Container> */}
+    {/* // </Box> */}
+    </>
   );
 };

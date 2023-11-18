@@ -18,19 +18,19 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-export const Layout: FC<LayoutProps> = (props) => {
-  const { children } = props;
+export const Layout: FC<LayoutProps> = () => {
+  // const { children } = props;
 
   return (
     <Box
       sx={{
         backgroundColor: 'background.default',
-        display: 'flex',
-        flex: '1 1 auto',
-        flexDirection: {
-          xs: 'column-reverse',
-          md: 'row',
-        },
+        // display: 'flex',
+        // flex: '1 1 auto',
+        // flexDirection: {
+        //   xs: 'column-reverse',
+        //   md: 'row',
+        // },
       }}
     >
       <Box
@@ -38,7 +38,7 @@ export const Layout: FC<LayoutProps> = (props) => {
           alignItems: 'center',
           backgroundColor: 'neutral.800',
           backgroundImage: 'url("/assets/gradient-bg.svg")',
-          backgroundPosition: 'top center',
+          // backgroundPosition: 'top center',
           backgroundRepeat: 'no-repeat',
           color: 'common.white',
           display: 'flex',
@@ -49,7 +49,7 @@ export const Layout: FC<LayoutProps> = (props) => {
           justifyContent: 'center',
           p: {
             xs: 4,
-            md: 8,
+            md: 40,
           },
         }}
       >
@@ -113,7 +113,7 @@ export const Layout: FC<LayoutProps> = (props) => {
             md: 8,
           },
           width: {
-            md: 600,
+            md: 800,
           },
         }}
       >
@@ -154,7 +154,7 @@ export const Layout: FC<LayoutProps> = (props) => {
               </Box>
             </Stack>
           </Box>
-          {children}
+          {/* {children} */}
         </div>
       </Box>
     </Box>
