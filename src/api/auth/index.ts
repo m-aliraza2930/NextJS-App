@@ -86,7 +86,7 @@ class AuthApi {
       password:password,
       name: name
     })
-    await wait(1000);
+    // await wait(1000);
     return resp.data?.message
   }
 

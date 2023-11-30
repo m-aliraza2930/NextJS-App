@@ -71,7 +71,7 @@ export const SearchDialog: FC<SearchDialogProps> = (props) => {
     setDisplayArticles(false);
     setIsLoading(true);
     // Do search here
-    await wait(1500);
+    // await wait(1500);
     setIsLoading(false);
     setDisplayArticles(true);
   }, []);

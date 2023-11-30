@@ -73,7 +73,7 @@ const useChartSeries = (): ChartSeries => {
         });
       }
 
-      await wait(delay);
+      // await wait(delay);
 
       if (isMounted()) {
         setData((prevState) => {

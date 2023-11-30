@@ -52,7 +52,7 @@ export const CustomerEditForm: FC<CustomerEditFormProps> = (props) => {
     onSubmit: async (values, helpers): Promise<void> => {
       try {
         // NOTE: Make API request
-        await wait(500);
+        // await wait(500);
         helpers.setStatus({ success: true });
         helpers.setSubmitting(false);
         toast.success('Customer updated');
