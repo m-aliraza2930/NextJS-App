@@ -45,17 +45,17 @@ const Page = () => {
     validationSchema,
     onSubmit: async (values, helpers): Promise<void> => {
       try {
-        const response= await authApi.forgotPassword(values.email)
-        toast.success(response.message)
+        const response = await authApi.forgotPassword(values.email);
+        toast.success(response.message);
 
         if (isMounted()) {
           const searchParams = new URLSearchParams({ username: values.email }).toString();
-          const href = paths.auth.jwt.resetPassword+ `?${searchParams}`;
+          const href = paths.auth.jwt.resetPassword + `?${searchParams}`;
           router.push(href);
         }
       } catch (err) {
         console.error(err);
-        toast.error(err?.response?.data?.error?.message)
+        toast.error(err?.response?.data?.error?.message);
         if (isMounted()) {
           helpers.setStatus({ success: false });
           helpers.setErrors({ submit: err.message });
@@ -107,28 +107,28 @@ const Page = () => {
                 underline="hover"
                 variant="subtitle2"
               > */}
-              {formik.isSubmitting?(
+              {formik.isSubmitting ? (
                 <Button
-                disabled={formik.isSubmitting}
-                fullWidth
-                size="large"
-                sx={{ mt: 3 }}
-                type="button"
-                variant="contained"
-              >
-               <CircularProgress size={25} />
-              </Button>
-              ):(
+                  disabled={formik.isSubmitting}
+                  fullWidth
+                  size="large"
+                  sx={{ mt: 3 }}
+                  type="button"
+                  variant="contained"
+                >
+                  <CircularProgress size={25} />
+                </Button>
+              ) : (
                 <Button
-                disabled={formik.isSubmitting}
-                fullWidth
-                size="large"
-                sx={{ mt: 3 }}
-                type="submit"
-                variant="contained"
-              >
-                Send reset link
-              </Button>
+                  disabled={formik.isSubmitting}
+                  fullWidth
+                  size="large"
+                  sx={{ mt: 3 }}
+                  type="submit"
+                  variant="contained"
+                >
+                  Send OTP
+                </Button>
               )}
               {/* </Link> */}
             </form>
