@@ -71,15 +71,15 @@ const handlers: Record<ActionType, Handler> = {
       // user,
     };
   },
-  // SIGN_UP: (state: State, action: SignUpAction): State => {
-  //   const { user } = action.payload;
+  SIGN_UP: (state: State, action: SignUpAction): State => {
+    const { user } = action.payload;
 
-  //   return {
-  //     ...state,
-  //     isAuthenticated: true,
-  //     user,
-  //   };
-  // },
+    return {
+      ...state,
+      isAuthenticated: true,
+      // user,
+    };
+  },
   SIGN_OUT: (state: State): State => ({
     ...state,
     isAuthenticated: false,
@@ -143,7 +143,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
 
   const signIn = useCallback(
     async (email: string, password: string): Promise<void> => {
-      const  {accessToken}  = await authApi.signIn({ email, password });
+      const  {accessToken}:any  = await authApi.signIn({ email, password });
       console.log("auth provider token", accessToken)
       // const user = await authApi.me({ accessToken });
 

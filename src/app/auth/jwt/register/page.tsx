@@ -58,7 +58,7 @@ const Page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const returnTo = searchParams.get('returnTo');
-  const { issuer, signUp } = useAuth<AuthContextType>();
+  // const { issuer, signUp } = useAuth<AuthContextType>();
   const formik = useFormik({
     initialValues,
     validationSchema,
