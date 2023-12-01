@@ -103,7 +103,7 @@ const Page = () => {
                 type="submit"
                 variant="contained"
               >
-                Send reset link
+                Send OTP
               </Button>
             </form>
           </CardContent>
