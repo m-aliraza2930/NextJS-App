@@ -27,7 +27,7 @@ const HorizontalLayoutContainer = styled('div')({
 interface HorizontalLayoutProps {
   children?: ReactNode;
   navColor?: NavColor;
-  sections?: any;
+  sections?: Section[];
 }
 
 export const HorizontalLayout: FC<HorizontalLayoutProps> = (props) => {
