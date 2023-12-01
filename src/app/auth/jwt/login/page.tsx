@@ -233,7 +233,7 @@ const Page = () => {
         toast.error(err?.response?.data?.error?.message);
         if (isMounted()) {
           helpers.setStatus({ success: false });
-          helpers.setErrors({ submit: err.message });
+          // helpers.setErrors({ submit: err.message });
           helpers.setSubmitting(false);
         }
       }
@@ -310,14 +310,14 @@ const Page = () => {
                   value={formik.values.password}
                 />
               </Stack>
-              {formik.errors.submit && (
+              {/* {formik.errors.submit && (
                 <FormHelperText
                   error
                   sx={{ mt: 3 }}
                 >
                   {formik.errors.submit as string}
                 </FormHelperText>
-              )}
+              )} */}
               {formik.isSubmitting ? (
                 <Button
                   disabled={formik.isSubmitting}

@@ -74,7 +74,7 @@ const Page = () => {
         console.error(err);
         if (isMounted()) {
           helpers.setStatus({ success: false });
-          helpers.setErrors({ submit: err.message });
+          // helpers.setErrors({ submit: err.message });
           helpers.setSubmitting(false);
         }
       }
@@ -176,14 +176,14 @@ const Page = () => {
               {!!(formik.touched.policy && formik.errors.policy) && (
                 <FormHelperText error>{formik.errors.policy}</FormHelperText>
               )}
-              {formik.errors.submit && (
+              {/* {formik.errors.submit && (
                 <FormHelperText
                   error
                   sx={{ mt: 3 }}
                 >
                   {formik.errors.submit as string}
                 </FormHelperText>
-              )}
+              )} */}
               {formik.isSubmitting?(
                   <Button
                   disabled={formik.isSubmitting}
