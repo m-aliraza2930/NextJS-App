@@ -68,6 +68,9 @@ export const JobCategoryStep: FC<JobCategoryStepProps> = (props) => {
     },
   });
   return (
+    <form  noValidate
+              onSubmit={formik.handleSubmit}
+              >
     <Stack
       spacing={3}
       {...other}
@@ -75,9 +78,6 @@ export const JobCategoryStep: FC<JobCategoryStepProps> = (props) => {
       <div>
         <Typography variant="h6">Please enter fleet information</Typography>
       </div>
-      <form  noValidate
-              onSubmit={formik.handleSubmit}
-              >
       <Stack spacing={3}>
         <TextField
           fullWidth
@@ -118,8 +118,8 @@ export const JobCategoryStep: FC<JobCategoryStepProps> = (props) => {
           Continue
         </Button>
       </div>
-      </form>
     </Stack>
+    </form>
 
   );
 };

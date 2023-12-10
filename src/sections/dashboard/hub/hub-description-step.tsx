@@ -73,6 +73,8 @@ const JobDescriptionStep: FC<JobDescriptionStepProps> = (props) => {
   }, []);
 
   return (
+     <form noValidate
+     onSubmit={formik.handleSubmit}>
     <Stack
       spacing={3}
       {...other}
@@ -80,8 +82,6 @@ const JobDescriptionStep: FC<JobDescriptionStepProps> = (props) => {
       <div>
         <Typography variant="h6">Please enter asset information</Typography>
       </div>
-      <form noValidate
-              onSubmit={formik.handleSubmit}>
       <Stack spacing={3}>
         <TextField
           fullWidth
@@ -171,8 +171,8 @@ const JobDescriptionStep: FC<JobDescriptionStepProps> = (props) => {
           Add Another
         </Button>
       </Stack>
-      </form>
     </Stack>
+    </form>
   );
 };
 
