@@ -9,9 +9,17 @@ import Grid from '@mui/material/Grid';
 import { Seo } from 'src/components/seo';
 import { usePageView } from 'src/hooks/use-page-view';
 import FleetCreate  from 'src/sections/dashboard/fleet/fleet-create-form';
+import { fleetAPI } from 'src/api/fleet';
+import { useEffect } from 'react';
 
-const Page = () => {
+const Page =  () => {
   usePageView();
+  const  viewMap = async() =>{
+    const data= await fleetAPI.fleetMapView();
+  }
+  useEffect(()=>{
+    viewMap()
+  },[])
 
   return (
     <>
